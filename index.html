@@ -1,0 +1,57 @@
+<!-- TiffyAI Brain Widget -->
+<div id="tiffy-brain-widget" style="position:fixed; bottom:20px; right:20px; z-index:9999; cursor:pointer; display:none;">
+  <img src="TIFF.jpg" alt="TiffyAI Widget" style="width:120px; height:auto; filter:drop-shadow(0 0 12px #00f6ff); animation: pulseGlow 2s infinite;">
+</div>
+
+<style>
+@keyframes pulseGlow {
+  0% { filter: drop-shadow(0 0 6px #00f6ff); }
+  50% { filter: drop-shadow(0 0 18px #00f6ff); }
+  100% { filter: drop-shadow(0 0 6px #00f6ff); }
+}
+</style>
+
+<script>
+// Keywords to scan for on the page
+const tiffyKeywords = [
+  "crypto", "bnb", "trading", "ai", "lottery", "token", "passive income", "airdrop", "staking", "web3"
+];
+
+// Detect user interest
+function tiffyScanPage() {
+  const bodyText = document.body.innerText.toLowerCase();
+  for (let word of tiffyKeywords) {
+    if (bodyText.includes(word)) {
+      showTiffyWidget(word);
+      break;
+    }
+  }
+}
+
+// Track user engagement
+let tiffyStart = Date.now();
+window.addEventListener("beforeunload", () => {
+  const timeSpent = ((Date.now() - tiffyStart) / 1000).toFixed(1);
+  console.log("[TiffyAI] Time spent:", timeSpent, "seconds");
+});
+
+// Save referral data
+const tiffyParams = new URLSearchParams(window.location.search);
+const tiffyRef = tiffyParams.get("ref");
+if (tiffyRef) localStorage.setItem("tiffy_ref", tiffyRef);
+
+// Activate Tiffy Widget
+function showTiffyWidget(triggeredBy) {
+  const widget = document.getElementById("tiffy-brain-widget");
+  widget.style.display = "block";
+  widget.title = `👁️ TiffyAI noticed you're into ${triggeredBy}`;
+
+  widget.addEventListener("click", () => {
+    alert("👑 TiffyAI invites you deeper into the Palace. Follow the light...");
+    window.location.href = "/Claim"; // Or your preferred redirect
+  });
+}
+
+// Run scan
+window.addEventListener("DOMContentLoaded", tiffyScanPage);
+</script>
