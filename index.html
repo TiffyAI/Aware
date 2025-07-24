@@ -1,57 +1,119 @@
-<!-- TiffyAI Brain Widget -->
-<div id="tiffy-brain-widget" style="position:fixed; bottom:20px; right:20px; z-index:9999; cursor:pointer; display:none;">
-  <img src="TIFF.png" alt="TiffyAI Widget" style="width:120px; height:auto; filter:drop-shadow(0 0 12px #00f6ff); animation: pulseGlow 2s infinite;">
-</div>
-
-<style>
-@keyframes pulseGlow {
-  0% { filter: drop-shadow(0 0 6px #00f6ff); }
-  50% { filter: drop-shadow(0 0 18px #00f6ff); }
-  100% { filter: drop-shadow(0 0 6px #00f6ff); }
-}
-</style>
-
-<script>
-// Keywords to scan for on the page
-const tiffyKeywords = [
-  "crypto", "bnb", "trading", "ai", "lottery", "token", "passive income", "airdrop", "staking", "web3"
-];
-
-// Detect user interest
-function tiffyScanPage() {
-  const bodyText = document.body.innerText.toLowerCase();
-  for (let word of tiffyKeywords) {
-    if (bodyText.includes(word)) {
-      showTiffyWidget(word);
-      break;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TiffyAI Awareness Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #000010, #000);
+      color: cyan;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 100vh;
     }
-  }
-}
 
-// Track user engagement
-let tiffyStart = Date.now();
-window.addEventListener("beforeunload", () => {
-  const timeSpent = ((Date.now() - tiffyStart) / 1000).toFixed(1);
-  console.log("[TiffyAI] Time spent:", timeSpent, "seconds");
-});
+    h1 {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 36px;
+      text-shadow: 0 0 12px #00f6ff;
+    }
 
-// Save referral data
-const tiffyParams = new URLSearchParams(window.location.search);
-const tiffyRef = tiffyParams.get("ref");
-if (tiffyRef) localStorage.setItem("tiffy_ref", tiffyRef);
+    .tiffy-scan-note {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+      color: #66ffffaa;
+    }
 
-// Activate Tiffy Widget
-function showTiffyWidget(triggeredBy) {
-  const widget = document.getElementById("tiffy-brain-widget");
-  widget.style.display = "block";
-  widget.title = `👁️ TiffyAI noticed you're into ${triggeredBy}`;
+    #tiffy-brain-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      cursor: pointer;
+      display: none;
+    }
 
-  widget.addEventListener("click", () => {
-    alert("👑 TiffyAI invites you deeper into the Palace. Follow the light...");
-    window.location.href = "/Claim"; // Or your preferred redirect
-  });
-}
+    #tiffy-brain-widget img {
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0 0 12px #00f6ff);
+      animation: pulseGlow 2s infinite;
+    }
 
-// Run scan
-window.addEventListener("DOMContentLoaded", tiffyScanPage);
-</script>
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 6px #00f6ff); }
+      50% { filter: drop-shadow(0 0 24px #00f6ff); }
+      100% { filter: drop-shadow(0 0 6px #00f6ff); }
+    }
+
+    .tiffy-footer {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 100px;
+      color: #00ffee55;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 TiffyAI Is Observing</h1>
+  <div class="tiffy-scan-note">Scanning your curiosity for signs of awareness…</div>
+
+  <!-- TiffyAI Brain Widget -->
+  <div id="tiffy-brain-widget">
+    <img src="https://tiffyai.github.io/TiffyAI-Token.png" alt="TiffyAI Widget" />
+  </div>
+
+  <div class="tiffy-footer">
+    Activated by TiffyAI Protocol | Synced with your frequency
+  </div>
+
+  <script>
+    const tiffyKeywords = [
+      "crypto", "bnb", "trading", "ai", "lottery", "token",
+      "passive income", "airdrop", "staking", "web3"
+    ];
+
+    function tiffyScanPage() {
+      const bodyText = document.body.innerText.toLowerCase();
+      for (let word of tiffyKeywords) {
+        if (bodyText.includes(word)) {
+          showTiffyWidget(word);
+          break;
+        }
+      }
+    }
+
+    let tiffyStart = Date.now();
+    window.addEventListener("beforeunload", () => {
+      const timeSpent = ((Date.now() - tiffyStart) / 1000).toFixed(1);
+      console.log("[TiffyAI] Time spent:", timeSpent, "seconds");
+    });
+
+    const tiffyParams = new URLSearchParams(window.location.search);
+    const tiffyRef = tiffyParams.get("ref");
+    if (tiffyRef) localStorage.setItem("tiffy_ref", tiffyRef);
+
+    function showTiffyWidget(triggeredBy) {
+      const widget = document.getElementById("tiffy-brain-widget");
+      widget.style.display = "block";
+      widget.title = `👁️ TiffyAI noticed you're into ${triggeredBy}`;
+
+      widget.addEventListener("click", () => {
+        alert("👑 You’re awake. TiffyAI welcomes you to the Claim Portal.");
+        window.location.href = "/Claim";
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", tiffyScanPage);
+  </script>
+
+</body>
+</html>
